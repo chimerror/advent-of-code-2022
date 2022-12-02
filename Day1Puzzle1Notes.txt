@@ -1,0 +1,21 @@
+Ideas:
+How to notice when numbers for an elf stop coming in to sum up? 
+    Push a sentinel (-1?) onto the stack before reading a number, if that sentinel never gets replaced, then we failed
+    to read in a new number, thus, we are done with the numbers for that elf. We can then sum them all up.
+How do we keep track of the max?
+    It might be easiest to use the stack of stacks. I was trying to limit myself to Befunge-93 compliant things but...
+    Why? The top level of SOS is going to keep track of the current max. Each new elf pushes on a new stack that
+    calculates their value. Once that is calculated, compare it to the old max and pick the higher. When ending your
+    elf value block, push 1 on the stack so the top value of that stack will get pushed onto the SOSS holding the max
+    value.
+
+    If the stack is Y, X, how dow we make it so only the higher of the two values end up on the stack?
+
+    Y, X
+
+    X , X -> Y -> Y, X, X -> / -> X, Y, X -> - ->
+    if (Y-X > 0) -> + -> Y
+    else -> $ -> X
+
+    I think this is going to have to use `g` and `p` to store and retrieve values! I don't see a way to do this all on
+    the stack!
